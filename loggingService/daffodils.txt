@@ -4,6 +4,6 @@ When all at once I saw a crowd,
 A host, of golden daffodils;
 Beside the lake, beneath the trees,
 Fluttering and dancing in the breeze.
-foldils
 
-BY William Wordsworth
+
+BY William WordsworthWrite log message
