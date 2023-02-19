@@ -1,4 +1,5 @@
 import sys
+from datetime import datetime
 
 # REQUIREMENTS
 # file's name can't be hardcoded
@@ -12,12 +13,12 @@ import sys
 
 
 # Get arguments from command line
-userInput = sys.argv
+user_input = sys.argv
 
 # Parse command line arguments starting from second argument
 # The first argument is the program's name
-for command in range(1, len(userInput)):
-    fileName = sys.argv[1]
+for command in range(1, len(user_input)):
+    file_name = sys.argv[1]
     
 # If no argument is passed, use default file
     # Call function to open and write to the file
@@ -28,8 +29,14 @@ for command in range(1, len(userInput)):
 # Open file with a+ access
 # If the file doesn't exist, it will create a new file and append to it
 # Else, it will append to the existing file
-fhand = open(fileName, 'a+')
-fhand.write("Write log message")
+fhand = open(file_name, 'a+')
+current_time = datetime.now()
+time_stamp = current_time.timestamp()
+date_time = datetime.fromtimestamp(time_stamp)
+date_time_str = date_time.strftime("%d-%m-%Y %H:%M:%S")
+log_message = "Write log message, timestamp: " + date_time_str
+
+fhand.write(log_message)
 fhand.close()
 
 # TO DO
