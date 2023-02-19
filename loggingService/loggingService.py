@@ -39,6 +39,8 @@ port_number = int(user_input[3])
 # with keyword doesn't require the use of close()
 with socket(AF_INET, SOCK_STREAM) as s:
     s.bind((host_address, port_number))
+    s.listen()
+    conn, addr = s.accept()
 
 
 # Open file with a+ access
@@ -72,3 +74,4 @@ fhand.close()
 # Refactor code to use getopt to check command line arguments
 # Research about three way handshake
 # Research about: If you pass an empty string, the server will accept connections on all available IPv4 interfaces.
+# Research: he socket that you’ll use to communicate with the client. It’s distinct from the listening socket that the server is using to accept new connections
