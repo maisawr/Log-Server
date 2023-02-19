@@ -1,5 +1,6 @@
 import sys
 from datetime import datetime
+import socket
 
 # REQUIREMENTS
 # file's name can't be hardcoded
@@ -28,18 +29,31 @@ for command in range(1, len(user_input)):
 
 # Open file with a+ access
 # If the file doesn't exist, it will create a new file and append to it
-# Else, it will append to the existing file
+# Otherwise, it will append to the existing file
 fhand = open(file_name, 'a+')
+
+# Get timestamp for current date and time
 current_time = datetime.now()
 time_stamp = current_time.timestamp()
 date_time = datetime.fromtimestamp(time_stamp)
-date_time_str = date_time.strftime("%d-%m-%Y %H:%M:%S")
-log_message = "Write log message, timestamp: " + date_time_str
 
+# Format timestamp
+date_time_str = date_time.strftime("%d-%m-%Y %H:%M:%S")
+
+# Get hostname
+host_name = socket.gethostname()
+
+# Log message
+log_message = "Log message timestamp: " + date_time_str + " hostname: " + host_name + "\n"
+
+# Write log message to file
 fhand.write(log_message)
+
+# Close file
 fhand.close()
 
 # TO DO
 # Refactor code using with open()
 # Refactor code to transform open/write file into a function
+# Refactor code to use getopt to check command line arguments
 
