@@ -1,6 +1,7 @@
 import sys
 from datetime import datetime
 from socket import AF_INET, SOCK_STREAM, socket
+import platform
 
 # REQUIREMENTS
 # file's name can't be hardcoded
@@ -41,6 +42,14 @@ with socket(AF_INET, SOCK_STREAM) as s:
     s.bind((host_address, port_number))
     s.listen()
     conn, addr = s.accept()
+    
+    with conn:
+        print(f"Conected to {addr}")
+        while True:
+            data = conn.recv(1024)
+            if not data:
+                break
+            conn.sendall(data)
 
 
 # Open file with a+ access
@@ -57,10 +66,10 @@ date_time = datetime.fromtimestamp(time_stamp)
 date_time_str = date_time.strftime("%d-%m-%Y %H:%M:%S")
 
 # Get hostname
-host_name = socket.gethostname()
+host_name = platform.node()
 
 # Log message
-log_message = "Log message timestamp: " + date_time_str + " hostname: " + host_name + "\n"
+log_message = f"Log message timestamp: {date_time_str} hostname: {host_name} \n"
 
 # Write log message to file
 fhand.write(log_message)
