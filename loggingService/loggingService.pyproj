@@ -12,7 +12,7 @@
     <Name>loggingService</Name>
     <RootNamespace>loggingService</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>test.txt</CommandLineArguments>
+    <CommandLineArguments>test.txt 127.0.0.1 3000</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

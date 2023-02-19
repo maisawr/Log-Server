@@ -1,6 +1,6 @@
 import sys
 from datetime import datetime
-import socket
+from socket import AF_INET, SOCK_STREAM, socket
 
 # REQUIREMENTS
 # file's name can't be hardcoded
@@ -18,14 +18,28 @@ user_input = sys.argv
 
 # Parse command line arguments starting from second argument
 # The first argument is the program's name
-for command in range(1, len(user_input)):
-    file_name = sys.argv[1]
+# Second argument: file path to save log messages
+# Third argument: host IP address
+# Fourth argument: port number to connect to server
+# for command in range(1, len(user_input)):
+file_name = user_input[1]
+host_address = user_input[2]
+port_number = int(user_input[3])
     
 # If no argument is passed, use default file
     # Call function to open and write to the file
 # Else, check if argument is valid .txt file
     # If it's a valid file name, call function to open and write to the file
     # Else, show usage message and quit program
+
+
+# Newtwork connection using TCP
+# AF_INET -> IPv4 family
+# SOCK_STREAM -> TCP
+# with keyword doesn't require the use of close()
+with socket(AF_INET, SOCK_STREAM) as s:
+    s.bind((host_address, port_number))
+
 
 # Open file with a+ access
 # If the file doesn't exist, it will create a new file and append to it
@@ -56,4 +70,5 @@ fhand.close()
 # Refactor code using with open()
 # Refactor code to transform open/write file into a function
 # Refactor code to use getopt to check command line arguments
-
+# Research about three way handshake
+# Research about: If you pass an empty string, the server will accept connections on all available IPv4 interfaces.
