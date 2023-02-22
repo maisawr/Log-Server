@@ -1,2 +1,2 @@
-Log message timestamp: 19-02-2023 14:47:40 hostname: DESKTOP-2MG36UR 
-Log message timestamp: 19-02-2023 14:55:28 hostname: DESKTOP-2MG36UR 
+22-02-2023 17:48:48 ('192.168.2.228', 64399) application:<INFO>[pid]: Testing syslog format 
+22-02-2023 17:49:02 ('192.168.2.228', 64417) application:<INFO>[pid]: Testing again format 
