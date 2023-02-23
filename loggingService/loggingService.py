@@ -1,8 +1,11 @@
+from concurrent.futures import thread
 from email import message_from_string
 import sys
 from datetime import datetime
-from socket import AF_INET, SOCK_STREAM, socket
-import platform
+from socket import *
+import os
+from _thread import *
+from writeLog import *
 
 # REQUIREMENTS
 # file's name can't be hardcoded
@@ -13,6 +16,7 @@ import platform
 # how to identify levels? Client send the level in the request
 # how to connect to other device (TCP/UDP)? TCP connection.
 # how transform into a service? No need to transform into a windows service.
+# how to connect to several clients? selectors or asyncio?
 
 # Get arguments from command line
 user_input = sys.argv
@@ -28,6 +32,8 @@ host_address = user_input[2]
 port_number = int(user_input[3])
 log_format = user_input[4]
 message = ""
+thread_count = 0
+
 # If no argument is passed, use default file
     # Call function to open and write to the file
 # Else, check if argument is valid .txt file
@@ -40,6 +46,7 @@ message = ""
 # SOCK_STREAM -> TCP
 # with keyword doesn't require the use of close()
 with socket(AF_INET, SOCK_STREAM) as s:
+    
     s.bind((host_address, port_number))
     s.listen()
     conn, addr = s.accept()
@@ -54,43 +61,10 @@ with socket(AF_INET, SOCK_STREAM) as s:
             # Get request
             message = data.decode()
             conn.sendall(data)
+        
+        # Call function to write log message formatted
+        writeLog(file_name, message, log_format)
        
-        # Open file with a+ access
-        # If the file doesn't exist, it will create a new file and append to it
-        # Otherwise, it will append to the existing file
-        fhand = open(file_name, 'a+')
-
-        # Get timestamp for current date and time
-        current_time = datetime.now()
-        time_stamp = current_time.timestamp()
-        date_time = datetime.fromtimestamp(time_stamp)
-
-        # Format timestamp
-        date_time_str = date_time.strftime("%d-%m-%Y %H:%M:%S")
-
-        # Get hostname
-        host_name = addr
-
-        # Parse request message
-        message = message.split(":")
-        log_level = message[0].strip()
-        log_message = message[1].strip()
-
-        # Log formatted as syslog
-        formatted_log = f"{date_time_str} {host_name} application:<{log_level}>[pid]: {log_message} \n"
-
-        # Write log message to file
-        fhand.write(formatted_log)
-
-        # Close file
-        fhand.close()
-
-
-if (log_format == "json"):
-    pass
-else:
-    pass
-
 
 # TO DO
 # Check for errors using try catch
