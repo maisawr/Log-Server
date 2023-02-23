@@ -24,3 +24,6 @@ Feb 23 14:46:20 mwolffresplande8967-virtual-machine testClient.py:<INFO>[4911] T
 Feb 23 14:49:50 mwolffresplande8967-virtual-machine testClient.py:<INFO>[5068] Testing again format 
 Feb 23 14:59:24 mwolffresplande8967-virtual-machine testClient.py:<INFO>[5304] Testing again format 
 Feb 23 15:12:17 mwolffresplande8967-virtual-machine testClient.py:<INFO>[5534] Testing again format 
+Feb 23 18:07:48 mwolffresplande8967-virtual-machine testClient.py:<INFO>[1670] Testing again format 
+Feb 23 18:10:42 mwolffresplande8967-virtual-machine testClient.py:<INFO>[1672] Testing again format 
+Feb 23 18:21:04 mwolffresplande8967-virtual-machine testClient.py:<INFO>[1711] Testing again format 

@@ -1,11 +1,9 @@
-from concurrent.futures import process
 from datetime import datetime
-import calendar
 
 # Constants definitions
 json_format = "json"
 
-def writeLog(file_name, request_data, log_format):
+def logger(file_name, request_data, log_format):
         # Open file with a+ access
         # If the file doesn't exist, it will create a new file and append to it
         # Otherwise, it will append to the existing file
