@@ -18,9 +18,6 @@ from writeLog import *
 # how transform into a service? No need to transform into a windows service.
 # how to connect to several clients? selectors or asyncio?
 
-
-
-
 # Get arguments from command line
 user_input = sys.argv
 
@@ -64,19 +61,10 @@ with socket(AF_INET, SOCK_STREAM) as s:
             # Get request
             message = data.decode()
             conn.sendall(data)
-
-        writeLog(file_name, message, addr)
-       
         
-    
-
-
-
-if (log_format == "json"):
-    pass
-else:
-    pass
-
+        # Call function to write log message formatted
+        writeLog(file_name, message, log_format)
+       
 
 # TO DO
 # Check for errors using try catch

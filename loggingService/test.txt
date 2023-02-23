@@ -17,3 +17,10 @@ Feb 23 13:58:01 mwolffresplande8967-virtual-machine application:<INFO>[pid]: Tes
 Feb 23 14:11:07 mwolffresplande8967-virtual-machine application:<INFO>[pid]: 1438 
 Feb 23 14:12:31 mwolffresplande8967-virtual-machine application:<INFO>[process_id] Testing again format 
 Feb 23 14:16:44 mwolffresplande8967-virtual-machine application:<INFO>[1438] Testing again format 
+Feb 23 14:40:03 mwolffresplande8967-virtual-machine application:<INFO>[4049] Testing again format 
+Feb 23 14:41:42 mwolffresplande8967-virtual-machine application:<INFO>[4244] Testing again format 
+Feb 23 14:45:23 mwolffresplande8967-virtual-machine INFO:<testClient.py>[4851] Testing again format 
+Feb 23 14:46:20 mwolffresplande8967-virtual-machine testClient.py:<INFO>[4911] Testing again format 
+Feb 23 14:49:50 mwolffresplande8967-virtual-machine testClient.py:<INFO>[5068] Testing again format 
+Feb 23 14:59:24 mwolffresplande8967-virtual-machine testClient.py:<INFO>[5304] Testing again format 
+Feb 23 15:12:17 mwolffresplande8967-virtual-machine testClient.py:<INFO>[5534] Testing again format 
