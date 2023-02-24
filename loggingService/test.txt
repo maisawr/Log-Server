@@ -36,3 +36,10 @@ Feb 24 12:04:12 mwolffresplande8967-virtual-machine testClient.py:<INFO>[2116] T
 Feb 24 12:04:14 mwolffresplande8967-virtual-machine testClient.py:<INFO>[2117] Testing again format 
 Feb 24 12:08:22 mwolffresplande8967-virtual-machine testClient.py:<INFO>[2118] Testing again format 
 Feb 24 12:08:24 mwolffresplande8967-virtual-machine testClient.py:<INFO>[2119] Testing again format 
+Feb 24 13:34:11 mwolffresplande8967-virtual-machine testClient.py:<INFO>[3914] Testing again format 
+Feb 24 13:39:27 mwolffresplande8967-virtual-machine testClient.py:<INFO>[3972] Testing again format 
+Feb 24 14:09:23 mwolffresplande8967-virtual-machine testClient.py:<INFO>[4893] Testing again format 
+Feb 24 14:12:39 mwolffresplande8967-virtual-machine testClient.py:<INFO>[4942] Testing again format 
+Feb 24 14:15:59 mwolffresplande8967-virtual-machine testClient.py:<INFO>[4982] Testing again format 
+Feb 24 14:17:45 mwolffresplande8967-virtual-machine testClient.py:<INFO>[4992] Testing again format 
+{"timestamp": "24 02 2023 14:30:02", "message": "Testing again format", "log": {"level": "INFO", "file": "testClient.py", "line": ""}, "user": {"name": "mwolffresplande8967-virtual-machine", "id": ""}, "event": {"success": true}}
