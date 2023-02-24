@@ -83,7 +83,7 @@ def format_as_json(request_data):
         # Convert dictionary to JSON format
         JSON_log = json.dumps(formatted_log)
 
-        formatted_log = JSON_log
+        formatted_log = f"{JSON_log} \n"
 
         return formatted_log
 
