@@ -12,7 +12,7 @@
     <Name>loggingService</Name>
     <RootNamespace>loggingService</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>192.168.2.228 3000 -ftest.txt</CommandLineArguments>
+    <CommandLineArguments>192.168.2.228 3000 -ftest.txt -j</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -24,6 +24,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="connectSocket.py" />
     <Compile Include="loggingService.py" />
     <Compile Include="parseArguments.py" />
     <Compile Include="writeLog.py" />

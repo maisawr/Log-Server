@@ -17,7 +17,7 @@ import os
 # The file name and the format are optional
 # Return a list with the arguments' values
 
-def parseArguments():
+def parse_arguments():
     parser = argparse.ArgumentParser(description="Log messages from client in a chosen format.")
 
     # Define arguments
