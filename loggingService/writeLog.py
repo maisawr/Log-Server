@@ -13,7 +13,7 @@ def logger(file_name, request_data, log_format):
         if (log_format == json_format):
             print("json")
         else:
-            formatted_log = formatAsSyslog(request_data)
+            formatted_log = format_as_syslog(request_data)
 
         # Write log message to file
         fhand.write(formatted_log)
@@ -25,10 +25,10 @@ def logger(file_name, request_data, log_format):
 # Syslog format
 # timestamp hostname application:<level>[pid]: message
 # timestamp format: month day hour -> Feb 19 13:20:49
-def formatAsSyslog(request_data):
+def format_as_syslog(request_data):
         
         # Format timestamp
-        date_time_str = getTimeStamp().strftime("%b %d %H:%M:%S")
+        date_time_str = get_timestamp().strftime("%b %d %H:%M:%S")
 
         # Parse request message
         request_data = request_data.split(":")
@@ -45,7 +45,7 @@ def formatAsSyslog(request_data):
 
 
 # Get timestamp for current date and time
-def getTimeStamp():
+def get_timestamp():
         current_time = datetime.now()
         time_stamp = current_time.timestamp()
         date_time = datetime.fromtimestamp(time_stamp)
