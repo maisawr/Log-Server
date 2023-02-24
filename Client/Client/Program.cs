@@ -47,7 +47,8 @@ namespace Client
                         sender.RemoteEndPoint.ToString());
 
                     // Encode the data string into a byte array.
-                    byte[] msg = Encoding.ASCII.GetBytes("This is a test<EOF>");
+                    string text = System.IO.File.ReadAllText(@".\testfile.txt");
+                    byte[] msg = Encoding.ASCII.GetBytes(text);
 
                     // Send the data through the socket.
                     int bytesSent = sender.Send(msg);
