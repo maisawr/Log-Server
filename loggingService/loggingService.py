@@ -1,11 +1,10 @@
-from concurrent.futures import thread
 import sys
 from socket import *
 import os
-from _thread import *
+import types
 from writeLog import *
-import argparse
 from parseArguments import parseArguments
+import selectors
 
 # REQUIREMENTS
 # file's name can't be hardcoded
@@ -18,10 +17,29 @@ from parseArguments import parseArguments
 # how transform into a service? No need to transform into a windows service.
 # how to connect to several clients? selectors or asyncio?
 
+# Call parseArguments() function to get the command line arguments
 args = parseArguments()
 
+# Create a selector to support multi connections
+selector = selectors.DefaultSelector()
+
+# Global variable to hold the client request in a string type
 message = ""
-thread_count = 0
+
+# Accept client socket
+def accept_client(socket):
+    
+    conn, addr = s.accept()
+
+    print(f"Conected to {addr}")
+
+    conn.setblocking(False)                                             # Enable non-blocking mode
+    data = types.SimpleNamespace(addr=addr, input=b"", output=b"")
+    events = selectors.EVENT_READ | selectors.EVENT_WRITE               # Check if the client is ready to read or write
+    selector.register(conn, events, data=data)
+
+
+
 
 # Newtwork connection using TCP
 # AF_INET -> IPv4 family
@@ -31,22 +49,44 @@ with socket(AF_INET, SOCK_STREAM) as s:
     
     s.bind((args.IP_address, args.port_number))
     s.listen()
-    conn, addr = s.accept()
+    s.setblocking(False)                                    # prevent blocking the server when the socket is called
+    selector.register(s, selectors.EVENT_READ, data=None)   # monitor the listening socket using the .EVENT_READ and track the data
 
-    with conn:
-        print(f"Conected to {addr}")
+    # Event loop to monitor the sockets ready for I/O
+    try:
         while True:
-            data = conn.recv(1024)
-            if not data:
-                break
+            events = selector.select(timeout=None)          # block until there's a socket ready
+            for key, mask in events:                        # tuple with a socket and the operations that are ready
+                if key.data is None:                        # if data is None, accept a new socket
+                    accept_client(key.fileobj)
+                else:
+                    pass
+                    #service_connection(key, mask)
+    except KeyboardInterrupt:
+        print("Caught keyboard interrupt, exiting")
+    finally:
+        selector.close()
 
-            # Get request
-            message = data.decode()
-            conn.sendall(data)
+
+    #conn, addr = s.accept()
+
+    #with conn:
+    #    print(f"Conected to {addr}")
+    #    while True:
+    #        data = conn.recv(1024)
+    #        if not data:
+    #            break
+
+    #        # Get request
+    #        message = data.decode()
+    #        conn.sendall(data)
         
-        # Call function to write log message formatted
-        logger(args.file, message, args.json)
-       
+    #    # Call function to write log message formatted
+    #    logger(args.file, message, args.json)
+ 
+        
+
+
 
 # TO DO
 # Check for errors using try catch
@@ -56,3 +96,4 @@ with socket(AF_INET, SOCK_STREAM) as s:
 # Research about three way handshake
 # Research about: If you pass an empty string, the server will accept connections on all available IPv4 interfaces.
 # Research: he socket that you’ll use to communicate with the client. It’s distinct from the listening socket that the server is using to accept new connections
+# Do we need this for the logging service: events = selectors.EVENT_READ | selectors.EVENT_WRITE?
