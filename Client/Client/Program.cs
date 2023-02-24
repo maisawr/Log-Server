@@ -12,11 +12,14 @@ namespace Client
     {
         static int Main(string[] args)
         {
-            StartClient();
+            string IP_address = args[0];
+            int IP_port = Int32.Parse(args[1]);
+
+            StartClient(IP_address, IP_port);
             return 0;
         }
 
-        public static void StartClient()
+        public static void StartClient(string IP_address, int IP_port)
         {
             byte[] bytes = new byte[1024];
 
@@ -26,11 +29,11 @@ namespace Client
                 // Get Host IP Address that is used to establish a connection
                 // In this case, we get one IP address of localhost that is IP : 127.0.0.1
                 // If a host has multiple addresses, you will get a list of addresses
-                IPHostEntry host = Dns.GetHostEntry("localhost");
-                IPAddress ipAddress = host.AddressList[0];
-                IPEndPoint remoteEP = new IPEndPoint(ipAddress, 11000);
+                //IPHostEntry host = Dns.GetHostEntry("localhost");
+                IPAddress ipAddress = IPAddress.Parse(IP_address);
+                IPEndPoint remoteEP = new IPEndPoint(ipAddress, IP_port);
 
-                // Create a TCP/IP  socket.
+                // Create a TCP/IP socket.
                 Socket sender = new Socket(ipAddress.AddressFamily,
                     SocketType.Stream, ProtocolType.Tcp);
 
