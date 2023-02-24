@@ -24,6 +24,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="connectSocket.py" />
     <Compile Include="loggingService.py" />
     <Compile Include="parseArguments.py" />
     <Compile Include="writeLog.py" />
