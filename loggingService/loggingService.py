@@ -27,16 +27,47 @@ selector = selectors.DefaultSelector()
 message = ""
 
 # Accept client socket
-def accept_client(socket):
+def accept_client(sock):
     
-    conn, addr = s.accept()
+    conn, addr = sock.accept()
 
     print(f"Conected to {addr}")
 
-    conn.setblocking(False)                                             # Enable non-blocking mode
-    data = types.SimpleNamespace(addr=addr, input=b"", output=b"")
-    events = selectors.EVENT_READ | selectors.EVENT_WRITE               # Check if the client is ready to read or write
+    conn.setblocking(False)                                             # enable non-blocking mode
+    data = types.SimpleNamespace(addr=addr, inb=b"", outb=b"")
+    events = selectors.EVENT_READ | selectors.EVENT_WRITE               # check if the client is ready to read or write
     selector.register(conn, events, data=data)
+
+# Request from and response to client 
+def service_connection(key, mask):
+    client_socket = key.fileobj                 # define client according to tuple created it in accept_client()
+    data = key.data                             # get data for specific client
+
+    # Receive request from client
+    if mask & selectors.EVENT_READ:
+        recv_data = client_socket.recv(1024)                
+
+        if recv_data:                                       # check if there's any data to receive                           
+            data.outb += recv_data                          # store data received in data             
+        else:                                               # when there's no data left to receive, close the connection
+            print(f"Closing connection to {data.addr}")
+            selector.unregister(client_socket)
+            client_socket.close()
+    
+
+
+    # Send response to client
+    if mask & selectors.EVENT_WRITE:
+        if data.outb:
+            print(f"Echoing {data.outb!r} to {data.addr}")
+            sent = client_socket.send(data.outb)
+            data.outb = data.outb[sent:]                    # discard the bytes sent from the buffer
+
+
+
+
+
+
 
 
 
@@ -61,7 +92,7 @@ with socket(AF_INET, SOCK_STREAM) as s:
                     accept_client(key.fileobj)
                 else:
                     pass
-                    #service_connection(key, mask)
+                    service_connection(key, mask)
     except KeyboardInterrupt:
         print("Caught keyboard interrupt, exiting")
     finally:
