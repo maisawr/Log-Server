@@ -12,10 +12,23 @@ namespace Client
     {
         static int Main(string[] args)
         {
-            string IP_address = args[0];
-            int IP_port = Int32.Parse(args[1]);
+            string IP_address;
+            int IP_port;
 
-            StartClient(IP_address, IP_port);
+            try
+            {
+                IP_address = args[0];
+                IP_port = Int32.Parse(args[1]);
+
+                StartClient(IP_address, IP_port);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Usage: IP_address IP_port");
+
+                return -1;
+            }
+
             return 0;
         }
 
@@ -26,10 +39,6 @@ namespace Client
             try
             {
                 // Connect to a Remote server
-                // Get Host IP Address that is used to establish a connection
-                // In this case, we get one IP address of localhost that is IP : 127.0.0.1
-                // If a host has multiple addresses, you will get a list of addresses
-                //IPHostEntry host = Dns.GetHostEntry("localhost");
                 IPAddress ipAddress = IPAddress.Parse(IP_address);
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, IP_port);
 
