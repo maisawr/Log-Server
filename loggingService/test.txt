@@ -1,0 +1,5 @@
+Feb 24 22:50:25 DESKTOP-2MG36UR C:\Users\maisa\source\repos\loggingService\loggingService\loggingService.py:<ERROR>[16288] Client sent the wrong format to the log. Not recording the client log. 
+Feb 24 22:50:25 DESKTOP-2MG36UR C:\Users\maisa\source\repos\loggingService\loggingService\loggingService.py:<ERROR>[16288] Client sent the wrong format to the log. Not recording the client log. 
+Feb 24 22:50:25 DESKTOP-2MG36UR C:\Users\maisa\source\repos\loggingService\loggingService\loggingService.py:<ERROR>[16288] Client sent the wrong format to the log. Not recording the client log. 
+Feb 24 22:50:25 DESKTOP-2MG36UR C:\Users\maisa\source\repos\loggingService\loggingService\loggingService.py:<ERROR>[16288] Client sent the wrong format to the log. Not recording the client log. 
+Feb 24 22:50:25 DESKTOP-2MG36UR C:\Users\maisa\source\repos\loggingService\loggingService\loggingService.py:<ERROR>[16288] Client sent the wrong format to the log. Not recording the client log. 

@@ -41,7 +41,7 @@ def service_connection(key, mask, args, message):
             message = data.outb.decode()
         
             # Call function to write log message formatted
-            logger(args.file, message, args.json)
+            logger(args.file_name, message, args.json)
 
         else:                                               # when there's no data left to receive, close the connection
             print(f"Closing connection to {data.addr}")
