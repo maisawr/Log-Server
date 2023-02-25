@@ -41,13 +41,17 @@ namespace Client
             // EXPECTED RESULT: INFO
             Test1();
 
-            // TEST 2: Delete a file
-            // EXPECTED RESULT: INFO
+            // TEST 2: Try to create a duplicate file
+            // EXPECTED RESULT: WARNING
             Test2();
 
-            // TEST 3: Open a file that doesn't exist
-            // EXPECTED RESULT: ERROR
+            // TEST 3: Delete a file
+            // EXPECTED RESULT: INFO
             Test3();
+
+            // TEST 4: Open a file that doesn't exist
+            // EXPECTED RESULT: ERROR
+            Test4();
 
             // release the connection
             CloseClient();

@@ -46,7 +46,7 @@ namespace Client
 
             if (File.Exists(path))
             {
-                Console.WriteLine("Warning: File exists already. Delete the file.");
+                Console.WriteLine("WARNING: File exists already. Delete the file.");
                 SendLog(Level.Warning, "File exists already.");
 
                 try
@@ -92,7 +92,28 @@ namespace Client
 
         public static void Test2()
         {
-            Console.WriteLine("[[ Test 2 ]] Delete the file");
+            Console.WriteLine("[[ Test 2 ]] Try to create a duplicate file");
+
+            if (File.Exists(path))
+            {
+                SendLog(Level.Warning, "File exists already.");
+                Console.WriteLine("RESULT: Success");
+            }
+            else
+            {
+                SendLog(Level.Error, "File doesn't exist.");
+                Console.WriteLine("RESULT: Fail");
+                Console.WriteLine("-> File doesn't exist in " + path);
+            }
+
+            Console.WriteLine();
+
+        }
+
+
+        public static void Test3()
+        {
+            Console.WriteLine("[[ Test 3 ]] Delete the file");
 
             try
             {
@@ -112,9 +133,9 @@ namespace Client
 
         }
 
-        public static void Test3()
+        public static void Test4()
         {
-            Console.WriteLine("[[ Test 3 ]] Delete a file that doesn't exist");
+            Console.WriteLine("[[ Test 4 ]] Delete a file that doesn't exist");
 
             try
             {
