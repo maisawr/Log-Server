@@ -32,7 +32,10 @@ namespace Client
 
             // start connecting
             // EXPECTED RESULT: Info
-            TryStartClient(IP_address, IP_port);
+            if (TryStartClient(IP_address, IP_port) != SUCCESS)
+            {
+                return FAILURE;
+            }
 
             // TEST 1: Create a file
             // EXPECTED RESULT: INFO
