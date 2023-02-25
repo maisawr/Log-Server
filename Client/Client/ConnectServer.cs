@@ -11,11 +11,16 @@ namespace Client
 {
     internal class ConnectServer
     {
+        // constants
+        const int SUCCESS = 0;
+        const int FAILURE = 1;
+
+        // private members
         private static IPAddress ipAddress;
         private static IPEndPoint remoteEP;
         private static Socket sender;
 
-        public static void StartClient(string IP_address, int IP_port)
+        public static int StartClient(string IP_address, int IP_port)
         {
             try
             {
@@ -34,7 +39,25 @@ namespace Client
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
+                return FAILURE;
             }
+
+            return SUCCESS;
+        }
+
+        public static void CloseClient()
+        {
+            try
+            {
+                // Release the socket.
+                sender.Shutdown(SocketShutdown.Both);
+                sender.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
         }
 
         public static void SendLog(string logMessage)
@@ -44,8 +67,6 @@ namespace Client
             // Connect the socket to the remote endpoint. Catch any errors.
             try
             {
-                Console.WriteLine(logMessage);
-
                 // Encode the data string into a byte array.
                 string text = CreateLog(Level.Info, logMessage);
                 byte[] msg = Encoding.ASCII.GetBytes(text);
@@ -55,12 +76,8 @@ namespace Client
 
                 // Receive the response from the remote device.
                 int bytesRec = sender.Receive(bytes);
-                Console.WriteLine("Echoed test = {0}",
-                    Encoding.ASCII.GetString(bytes, 0, bytesRec));
-
-                // Release the socket.
-                sender.Shutdown(SocketShutdown.Both);
-                sender.Close();
+                //Console.WriteLine("Echoed test = {0}",
+                //    Encoding.ASCII.GetString(bytes, 0, bytesRec));
 
             }
             catch (ArgumentNullException ane)

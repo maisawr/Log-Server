@@ -7,28 +7,46 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using static Client.ConnectServer;
+using static Client.Test;
+using System.ComponentModel.Design;
 
 namespace Client
 {
     internal class Program
     {
+        // constants
+        const int SUCCESS = 0;
+        const int FAILURE = 1;
+
+        // private members
         private static string IP_address;
         private static int IP_port;
 
         static int Main(string[] args)
         {
             // check parameters
-            if (getParameter(args) != 0)
+            if (getParameter(args) == FAILURE)
             {
-                return -1;
+                return FAILURE;
             }
 
             // start connecting
-            StartClient(IP_address, IP_port);
+            // EXPECTED RESULT: Info
+            TryStartClient(IP_address, IP_port);
 
-            SendLog("test");
+            // TEST 1: 
+            // EXPECTED RESULT:
 
-            return 0;
+            // TEST 2: Open a file that doesn't exist
+            // EXPECTED RESULT: ERROR
+
+            // TEST 3: 
+            // EXPECTED RESULT:
+
+            // release the connection
+            CloseClient();
+
+            return SUCCESS;
         }
 
         public static int getParameter(string[] args)
@@ -37,15 +55,14 @@ namespace Client
             {
                 IP_address = args[0];
                 IP_port = Int32.Parse(args[1]);
-
             }
             catch (Exception)
             {
                 Console.WriteLine("Usage: IP_address IP_port");
-                return -1;
+                return FAILURE;
             }
 
-            return 0;
+            return SUCCESS;
 
         }
 

@@ -46,6 +46,7 @@
     <Compile Include="ConnectServer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test.cs" />
     <Compile Include="WriteLog.cs" />
   </ItemGroup>
   <ItemGroup>
