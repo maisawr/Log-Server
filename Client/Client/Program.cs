@@ -36,12 +36,15 @@ namespace Client
 
             // TEST 1: 
             // EXPECTED RESULT:
+            Test1();
 
             // TEST 2: Open a file that doesn't exist
             // EXPECTED RESULT: ERROR
+            Test2();
 
             // TEST 3: 
             // EXPECTED RESULT:
+            Test3();
 
             // release the connection
             CloseClient();

@@ -16,18 +16,55 @@ namespace Client
 
         public static void TryStartClient(string IP_address, int IP_port)
         {
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("Test 0: Connect to the Server");
+            Console.WriteLine("------------------------------------------");
+
             if (StartClient(IP_address, IP_port) == SUCCESS)
             {
                 string logConnected = "Socket connected to " + IP_address + ":" + IP_port;
-                Console.WriteLine(logConnected);
                 SendLog(logConnected);
+                Console.WriteLine("Result: Success");
             }
             else
             {
-                Console.WriteLine("Fail to connect to " + IP_address + ":" + IP_port);
+                Console.WriteLine("Result: Fail");
+                Console.WriteLine("-> Fail to connect to " + IP_address + ":" + IP_port);
             }
+
+            Console.WriteLine("------------------------------------------");
         }
 
+        public static void Test1()
+        {
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("Test 1: ");
+            Console.WriteLine("------------------------------------------");
+
+
+            Console.WriteLine("------------------------------------------");
+
+        }
+
+        public static void Test2()
+        {
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("Test 2: Open a file that doesn't exist");
+            Console.WriteLine("------------------------------------------");
+
+
+            Console.WriteLine("------------------------------------------");
+        }
+
+        public static void Test3()
+        {
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("Test 3: ");
+            Console.WriteLine("------------------------------------------");
+
+
+            Console.WriteLine("------------------------------------------");
+        }
 
     }
 }
