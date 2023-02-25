@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,7 +26,7 @@ namespace Client
             string processName;
             string processID;
 
-            clientName = Environment.GetEnvironmentVariable("CLIENTNAME");
+            clientName = Environment.UserName;
             processName = Process.GetCurrentProcess().ProcessName;
             processID = Process.GetCurrentProcess().Id.ToString();
 
