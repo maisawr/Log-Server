@@ -34,16 +34,16 @@ namespace Client
             // EXPECTED RESULT: Info
             TryStartClient(IP_address, IP_port);
 
-            // TEST 1: 
-            // EXPECTED RESULT:
+            // TEST 1: Create a file
+            // EXPECTED RESULT: INFO
             Test1();
 
-            // TEST 2: Open a file that doesn't exist
-            // EXPECTED RESULT: ERROR
+            // TEST 2: Delete a file
+            // EXPECTED RESULT: INFO
             Test2();
 
-            // TEST 3: 
-            // EXPECTED RESULT:
+            // TEST 3: Open a file that doesn't exist
+            // EXPECTED RESULT: ERROR
             Test3();
 
             // release the connection

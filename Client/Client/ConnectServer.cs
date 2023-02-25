@@ -60,7 +60,7 @@ namespace Client
 
         }
 
-        public static void SendLog(string logMessage)
+        public static void SendLog(Level level, string logMessage)
         {
             byte[] bytes = new byte[1024];
 
@@ -68,7 +68,7 @@ namespace Client
             try
             {
                 // Encode the data string into a byte array.
-                string text = CreateLog(Level.Info, logMessage);
+                string text = CreateLog(level, logMessage);
                 byte[] msg = Encoding.ASCII.GetBytes(text);
 
                 // Send the data through the socket.
