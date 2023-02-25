@@ -1,4 +1,3 @@
-#
 # Filename: loggingService.py
 # Project: loggingService
 # By: Maísa Wolff Resplande, student ID 8778967
@@ -23,13 +22,20 @@
 
 # TO DO
 # Check for errors using try catch
-# Refactor code using with open()
-# Refactor code to transform open/write file into a function
-# Refactor code to use getopt to check command line arguments
+# Refactor code using with open() OK
+# Refactor code to transform open/write file into a function OK
+# Refactor code to use getopt to check command line arguments USING argparse
 # Research about three way handshake
 # Research about: If you pass an empty string, the server will accept connections on all available IPv4 interfaces.
 # Research: he socket that you’ll use to communicate with the client. It’s distinct from the listening socket that the server is using to accept new connections
 # Do we need this for the logging service: events = selectors.EVENT_READ | selectors.EVENT_WRITE?
+
+#- rate limiter
+#- error handling
+#- filter log levels
+#- identify clients
+#- write READ ME for server
+
 
 from connectSocket import start_server
 
