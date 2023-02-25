@@ -5,6 +5,16 @@ using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
+
+enum Level
+{
+    Debug,
+    Info,
+    Warning,
+    Error,
+    Fatal
+}
 
 namespace Client
 {
@@ -28,7 +38,7 @@ namespace Client
 
                 return -1;
             }
-
+            
             return 0;
         }
 
@@ -51,12 +61,12 @@ namespace Client
                 {
                     // Connect to Remote EndPoint
                     sender.Connect(remoteEP);
+                    string logConnected = "Socket connected to " + sender.RemoteEndPoint.ToString();
 
-                    Console.WriteLine("Socket connected to {0}",
-                        sender.RemoteEndPoint.ToString());
+                    Console.WriteLine(logConnected);
 
                     // Encode the data string into a byte array.
-                    string text = System.IO.File.ReadAllText(@".\testfile.txt");
+                    string text = CreateLog(Level.Info, logConnected);
                     byte[] msg = Encoding.ASCII.GetBytes(text);
 
                     // Send the data through the socket.
@@ -92,5 +102,19 @@ namespace Client
             }
         }
 
+        public static string CreateLog(Level level, string log)
+        {
+
+            string clientName;
+            string processName;
+            string processID;
+
+            clientName = Environment.GetEnvironmentVariable("CLIENTNAME");
+            processName = Process.GetCurrentProcess().ProcessName;
+            processID = Process.GetCurrentProcess().Id.ToString();
+
+            return clientName + ":" + processName + ":" + level + ":" + processID + ":" + log;
+
+        }
     }
 }
