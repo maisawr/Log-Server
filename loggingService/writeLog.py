@@ -54,7 +54,7 @@ def format_as_syslog(request_data):
         # Format timestamp
         date_time_str = get_timestamp().strftime("%b %d %H:%M:%S")
     
-        # Split the request
+        # Split the request into an array
         request_data = request_data.split(":")
 
         # Parse request message
@@ -90,9 +90,12 @@ def format_as_json(request_data):
         # Format timestamp
         date_time_str = get_timestamp().strftime("%d %m %Y %H:%M:%S")
 
+        # Split the request into an array
+        request_data = request_data.split(":")
+
+        # Parse request message
         if len(request_data) == 5:                          # check number of arguments from log message
-            # Parse request message
-            request_data = request_data.split(":")
+ 
             client_name = request_data[0].strip()
             process_name = request_data[1].strip()
             log_level = request_data[2].strip()
