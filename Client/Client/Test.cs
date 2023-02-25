@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using static Client.ConnectServer;
 
 namespace Client
@@ -23,14 +19,14 @@ namespace Client
 
             if (StartClient(IP_address, IP_port) == SUCCESS)
             {
-                string logConnected = "Socket connected to " + IP_address + ":" + IP_port;
+                string logConnected = "Socket connected to " + IP_address + ";" + IP_port;
                 SendLog(Level.Info, logConnected);
                 Console.WriteLine("RESULT: Success");
             }
             else
             {
                 Console.WriteLine("RESULT: Fail");
-                Console.WriteLine("-> Fail to connect to " + IP_address + ":" + IP_port);
+                Console.WriteLine("-> Fail to connect to " + IP_address + ";" + IP_port);
                 return FAILURE;
 
             }
