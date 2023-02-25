@@ -91,6 +91,20 @@ namespace Client
             Console.WriteLine("---------------------------------------------------");
             Console.WriteLine("[[ Test 2 ]] Delete the file");
 
+            try
+            {
+                File.Delete(path);
+
+                SendLog(Level.Info, "Delete the file.");
+                Console.WriteLine("Result: Success");
+
+            }
+            catch (Exception)
+            {
+                SendLog(Level.Error, "Fail to delete the file in " + path);
+                Console.WriteLine("Result: Fail");
+
+            }
 
         }
 
